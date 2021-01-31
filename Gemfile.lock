@@ -4,6 +4,7 @@ GEM
     ast (2.4.2)
     backport (1.1.2)
     benchmark (0.1.1)
+    diff-lcs (1.4.4)
     e2mmap (0.1.0)
     jaro_winkler (1.5.4)
     kramdown (2.3.0)
@@ -24,6 +25,19 @@ GEM
     reverse_markdown (2.0.0)
       nokogiri
     rexml (3.2.4)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
+    rspec-core (3.10.1)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-mocks (3.10.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-support (3.10.2)
     rubocop (1.9.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -60,6 +74,7 @@ PLATFORMS
 
 DEPENDENCIES
   prettier
+  rspec
   solargraph
 
 BUNDLED WITH
