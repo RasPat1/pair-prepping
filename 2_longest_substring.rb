@@ -21,41 +21,23 @@ def length_of_longest_substring(s)
   map = {}
   max_size = 0
 
-  invalid_map = proc { map.any? { |_char, count| count > 1 } }
-
   while right_index < s.size && left_index <= s.size - max_size
-    if invalid_map.call
-      left_index += 1
-      remove(map, s[left_index])
-    else
-      window_size = right_index - left_index
-      max_size = [max_size, window_size].max
+    window_size = right_index - left_index
+    max_size = [max_size, window_size].max
+    right_index += 1
 
-      right_index += 1
-      add(map, s[right_index])
-    end
+    new_char = s[right_index]
+    left_index = map[new_char] if map.has_key?(new_char) && left_index < map[new_char]
+    map[new_char] = right_index
   end
 
   max_size
 end
 
-def add(map, char)
-  map[char] ||= 0
-  map[char] += 1
-end
-
-def remove(map, char)
-  map[char] -= 1
-end
 # Let's start with 2 pointers a "left_index" and a "right_index" pointer
 # Both are intialized at the start of the string.
 # We'll say -1 is before the first char.
-# Expand the right pointer
-# As it exapnds add each character to a hash map
-# The hash map has the count of each character in your "window"
-# The window is the substring between the left and right pointers
-# If the window has only 1 instance of each character that is a valid substring
-# Save the size of that if it larger than the max
-# If the window does not have a valid substring then shrink the window from the left
+# Add a new character to the hash map and save the position of that character
+# If we see it again fast forward to that index
 # Stop once the right pointer hits the end of the array and either we find a valid window
 # or the window is smaller than the current max

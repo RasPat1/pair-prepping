@@ -38,4 +38,10 @@ RSpec.describe 'longest_substring' do
 
     expect(length_of_longest_substring(*input)).to eq(output)
   end
+  it 'works on string with dupes' do
+    input = ['aab']
+    output = 2
+
+    expect(length_of_longest_substring(*input)).to eq(output)
+  end
 end
