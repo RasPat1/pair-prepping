@@ -26,7 +26,10 @@ def length_of_longest_substring(s)
     max_size = [max_size, window_size].max
 
     new_char = s[right_index]
-    left_index = map[new_char] + 1 if map.has_key?(new_char) && left_index <= map[new_char]
+    last_occurence = map[new_char]
+
+    left_index = map[new_char] + 1 if last_occurence && last_occurence >= left_index
+
     map[new_char] = right_index
     right_index += 1
   end
