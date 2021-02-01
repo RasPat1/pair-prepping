@@ -24,11 +24,11 @@ def length_of_longest_substring(s)
   while right_index <= s.size && left_index < s.size - max_size
     window_size = right_index - left_index
     max_size = [max_size, window_size].max
-    right_index += 1
 
-    new_char = s[right_index - 1]
-    left_index = map[new_char] if map.has_key?(new_char) && left_index < map[new_char]
+    new_char = s[right_index]
+    left_index = map[new_char] + 1 if map.has_key?(new_char) && left_index <= map[new_char]
     map[new_char] = right_index
+    right_index += 1
   end
 
   max_size
