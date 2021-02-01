@@ -16,17 +16,17 @@
 def length_of_longest_substring(s)
   return s.size if s.size <= 1
 
-  left_index = right_index = -1
+  left_index = right_index = 0
 
   map = {}
   max_size = 0
 
-  while right_index < s.size && left_index <= s.size - max_size
+  while right_index <= s.size && left_index < s.size - max_size
     window_size = right_index - left_index
     max_size = [max_size, window_size].max
     right_index += 1
 
-    new_char = s[right_index]
+    new_char = s[right_index - 1]
     left_index = map[new_char] if map.has_key?(new_char) && left_index < map[new_char]
     map[new_char] = right_index
   end
