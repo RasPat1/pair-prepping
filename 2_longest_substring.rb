@@ -21,20 +21,19 @@ def length_of_longest_substring(s)
   map = {}
   max_size = 0
 
-  valid_map = proc { map.all? { |_char, count| count <= 1 } }
+  invalid_map = proc { map.any? { |_char, count| count > 1 } }
 
   while right_index < s.size && left_index <= s.size - max_size
-    if valid_map.call
+    if invalid_map.call
+      left_index += 1
+      remove(map, s[left_index])
+    else
       window_size = right_index - left_index
       max_size = [max_size, window_size].max
 
       right_index += 1
       add(map, s[right_index])
-    else
-      left_index += 1
-      remove(map, s[left_index])
     end
-
   end
 
   max_size
